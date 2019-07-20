@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.sqlserver/mssql-jdbc/6.2.1.jre7/2912ca3a5ee674ec79cd6914b9f5d6282d083eb8/mssql-jdbc-6.2.1.jre7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.sqlserver/mssql-jdbc/6.2.1.jre7/9cf7e3711a5f5e09989e9481d4f0d155231a5434/mssql-jdbc-6.2.1.jre7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

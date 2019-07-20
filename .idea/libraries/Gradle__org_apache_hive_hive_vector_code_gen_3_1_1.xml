@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.hive:hive-vector-code-gen:3.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-vector-code-gen/3.1.1/5652e04d4c5ce9dd173c4af69e4d3503b9095b94/hive-vector-code-gen-3.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-vector-code-gen/3.1.1/abebba10cbd826e7538fd4b313674066a5b48ea2/hive-vector-code-gen-3.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

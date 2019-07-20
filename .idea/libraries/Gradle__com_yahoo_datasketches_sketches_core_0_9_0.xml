@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.yahoo.datasketches:sketches-core:0.9.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yahoo.datasketches/sketches-core/0.9.0/ba592b4cca8eb7dd425721acc1b5d4c034e34fa0/sketches-core-0.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yahoo.datasketches/sketches-core/0.9.0/74c217a8c229155115550a60382bb1b6faa9bf69/sketches-core-0.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

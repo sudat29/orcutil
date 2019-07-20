@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.hive:hive-llap-common:3.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-llap-common/3.1.1/e610420712b323031c733c922738d5ad6089ea1/hive-llap-common-3.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-llap-common/3.1.1/c0ea4f951fe88caebd7f6b1977631c71477914e8/hive-llap-common-3.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

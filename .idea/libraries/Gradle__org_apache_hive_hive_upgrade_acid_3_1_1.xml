@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.hive:hive-upgrade-acid:3.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-upgrade-acid/3.1.1/f142a0faacc897d8f0721a8f5fb044e64261cb0/hive-upgrade-acid-3.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-upgrade-acid/3.1.1/c4f5dc007f9fb84dd38733d329645d02e6324870/hive-upgrade-acid-3.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
