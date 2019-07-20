@@ -29,11 +29,7 @@ import org.apache.hadoop.io.IntWritable
 import org.apache.hadoop.io.LongWritable
 import org.unitils.reflectionassert.ReflectionAssert
 import spock.lang.Specification
-import sud.indepth.orcutil.annotation.AnnotationUtil
-import sud.indepth.orcutil.annotation.ListField
-import sud.indepth.orcutil.annotation.MapField
-import sud.indepth.orcutil.annotation.PrimitiveField
-import sud.indepth.orcutil.annotation.StructField
+import sud.indepth.orcutil.annotation.*
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
 
 import java.lang.reflect.Field
@@ -47,7 +43,7 @@ class OrcCreatorSpec extends Specification {
   private OrcCreator orcCreator = new OrcCreator()
   private OrcSchemaGenerator schemaGenerator = new OrcSchemaGenerator()
 
-  def "testSimpleOrcStructCreation"() {
+  def "Validate simple OrcStruct creation"() {
     given:
     Example.SimplePerson p = new Example.SimplePerson()
     p.setId(10)
@@ -65,7 +61,7 @@ class OrcCreatorSpec extends Specification {
     assertEquals(orcStruct.toString(), "{10, 70000.0, John, {India}}")
   }
 
-  def "testOrcStructWithListCreation"() {
+  def "Validate OrcStruct with list creation"() {
     given:
     Example.SimpleOrder order = new Example.SimpleOrder()
     order.setOrderId(10)
@@ -77,7 +73,7 @@ class OrcCreatorSpec extends Specification {
     assertEquals(orcStruct.toString(), "{10, [item1, item2]}")
   }
 
-  def "testOrcStructWithComplexListCreation"() {
+  def "Test OrcStruct with complex list creation"() {
     given:
     Example.ComplexOrder order = new Example.ComplexOrder()
     order.setOrderId(10)
@@ -95,7 +91,7 @@ class OrcCreatorSpec extends Specification {
     assertEquals(orcStruct.toString(), "{10, [{101, item1}, {102, item2}]}")
   }
 
-  def "testOrcStructWithListReader"() {
+  def "Validate OrcStruct with list reader"() {
     given:
     Example.ComplexOrder order = new Example.ComplexOrder()
     order.setOrderId(10)
@@ -128,10 +124,10 @@ class OrcCreatorSpec extends Specification {
     ObjectInspector inspector = reader.getObjectInspector()
     ((SettableStructObjectInspector) inspector).getAllStructFieldRefs()
 
-    Object row
+    Object row = null
     List<Example.ComplexOrder> actualOrders = new ArrayList<>()
     while (recordReader.hasNext()) {
-      row = recordReader.next(row);
+      row = recordReader.next(row)
       actualOrders.add((Example.ComplexOrder) populateEntityByType(null, Example.ComplexOrder.class, null, inspector, row))
     }
     ReflectionAssert.assertReflectionEquals(expectedOrders, actualOrders)
@@ -141,7 +137,7 @@ class OrcCreatorSpec extends Specification {
     fs.delete(path, true)
   }
 
-  def "testOrcStructWithMapReader"() {
+  def "Validate OrcStruct with map reader"() {
     given:
     Example.OrderMap order = new Example.OrderMap()
     order.setOrderId(10)
@@ -174,10 +170,10 @@ class OrcCreatorSpec extends Specification {
     ObjectInspector inspector = reader.getObjectInspector()
     ((SettableStructObjectInspector) inspector).getAllStructFieldRefs()
 
-    Object row
+    Object row = null
     List<Example.OrderMap> actualOrders = new ArrayList<>()
     while (recordReader.hasNext()) {
-      row = recordReader.next(row);
+      row = recordReader.next(row)
       actualOrders.add((Example.OrderMap) populateEntityByType(null, Example.OrderMap.class, null, inspector, row))
     }
     ReflectionAssert.assertReflectionEquals(expectedOrders, actualOrders)
@@ -187,7 +183,7 @@ class OrcCreatorSpec extends Specification {
     fs.delete(path, true)
   }
 
-  def "testComplexOrcStructCreation"() {
+  def "Validate complex OrcStruct creation"() {
     given:
     Example.Person p = new Example.Person()
     p.id = 10
@@ -211,7 +207,7 @@ class OrcCreatorSpec extends Specification {
     assertEquals(orcStruct.toString(), "{John, 10, 70000.0, {Lane no 1, {Delhi, {India}}, 0}}")
   }
 
-  def "testSimpleOrcStructReader"() {
+  def "Validate simple OrcStruct reader"() {
     given:
     Example.SimplePerson p = new Example.SimplePerson()
     p.setId(10)
@@ -240,10 +236,10 @@ class OrcCreatorSpec extends Specification {
     ObjectInspector inspector = reader.getObjectInspector()
     ((SettableStructObjectInspector) inspector).getAllStructFieldRefs()
 
-    Object row
+    Object row = null
     List<Example.SimplePerson> simplePeople = new ArrayList<>()
     while (recordReader.hasNext()) {
-      row = recordReader.next(row);
+      row = recordReader.next(row)
       simplePeople.add((Example.SimplePerson) populateEntityByType(null, Example.SimplePerson.class, null, inspector, row))
     }
     ReflectionAssert.assertReflectionEquals(expectedSimplePeople, simplePeople)
@@ -289,10 +285,10 @@ class OrcCreatorSpec extends Specification {
     ObjectInspector inspector = reader.getObjectInspector()
     ((SettableStructObjectInspector) inspector).getAllStructFieldRefs()
 
-    Object row
+    Object row = null
     List<Example.Person> simplePeople = new ArrayList<>()
     while (recordReader.hasNext()) {
-      row = recordReader.next(row);
+      row = recordReader.next(row)
       simplePeople.add((Example.Person) populateEntityByType(null, Example.Person.class, null, inspector, row))
     }
     ReflectionAssert.assertReflectionEquals(simplePeople, expectedSimplePeople)
@@ -371,7 +367,7 @@ class OrcCreatorSpec extends Specification {
     }
   }
 
-  static Field findField(String key, Class<?> aClass) {
+  private static Field findField(String key, Class<?> aClass) {
     return aClass.getDeclaredFields()
         .find { field ->
       ((field.isAnnotationPresent(PrimitiveField.class) && key == AnnotationUtil.getPrimitiveFieldKey(field))
@@ -381,7 +377,7 @@ class OrcCreatorSpec extends Specification {
     }
   }
 
-  static <T> void setFieldValue(T entity, Field field, Object fieldValue) throws IllegalAccessException {
+  private static <T> void setFieldValue(T entity, Field field, Object fieldValue) throws IllegalAccessException {
     if (field.getType().isAssignableFrom(fieldValue.getClass())) {
       field.set(entity, fieldValue)
     } else {

@@ -29,9 +29,9 @@ import sud.indepth.orcutil.annotation.StructField;
 import sud.indepth.orcutil.exception.DuplicateFieldKeyException;
 import sud.indepth.orcutil.exception.NonPrimitiveFieldException;
 import sud.indepth.orcutil.exception.SchemaGenerationException;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -102,15 +102,15 @@ public class OrcSchemaGenerator {
       } else if (field.isAnnotationPresent(ListField.class)) {
         String key = AnnotationUtil.getListFieldKey(field);
         validateKey(fields, key);
-        Class<?> elementClass = (Class<?>) ((ParameterizedTypeImpl)field.getGenericType()).getActualTypeArguments()[0];
+        Class<?> elementClass = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
         TypeDescription listTypeDescription = TypeDescription.createList(getElementSchema(elementClass));
         typeDescriptions.put(key, listTypeDescription);
         fields.add(key);
       } else if (field.isAnnotationPresent(MapField.class)) {
         String key = AnnotationUtil.getMapFieldKey(field);
         validateKey(fields, key);
-        Class<?> keyClass = (Class<?>) ((ParameterizedTypeImpl)field.getGenericType()).getActualTypeArguments()[0];
-        Class<?> valueClass = (Class<?>) ((ParameterizedTypeImpl)field.getGenericType()).getActualTypeArguments()[1];
+        Class<?> keyClass = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
+        Class<?> valueClass = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[1];
         TypeDescription keyTypeDescription = getElementSchema(keyClass);
         TypeDescription valueTypeDescription = getElementSchema(valueClass);
         TypeDescription mapTypeDescription = TypeDescription.createMap(keyTypeDescription, valueTypeDescription);

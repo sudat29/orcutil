@@ -27,7 +27,7 @@ import static groovy.util.GroovyTestCase.assertEquals
 class OrcSchemaGeneratorSpec extends Specification {
   private OrcSchemaGenerator schemaGenerator = new OrcSchemaGenerator()
 
-  def "testOrcSchemaGenerator"() {
+  def "Validate OrcSchema generator"() {
     given:
     String expectedSchema = "struct<name:string,emp_id:int,salary:double,address:struct<line1:string," +
         "city:struct<name:string,country:struct<name:string>>,pinCode:int>>"
@@ -37,19 +37,16 @@ class OrcSchemaGeneratorSpec extends Specification {
     assertEquals(expectedSchema, actualSchema)
   }
 
-  def "testOrcListSchema"() {
+  def "Validate schema generation for list"() {
     given:
-//    TypeDescription schema = TypeDescription.createStruct()
-//        .addField("list",
-//            TypeDescription.createList(TypeDescription.createString()))
-    when:
     String actualSchema = schemaGenerator.generateStructTypeDesc(Example.SimpleOrder.class).toString()
+    when:
     String expectedSchema = "struct<orderId:int,itemIds:array<string>>"
     then:
     assertEquals(expectedSchema, actualSchema)
   }
 
-  def "testOrcComplexListSchema"() {
+  def "Validate schema generation for complex list"() {
     given:
     String expectedSchema = "struct<orderId:int,itemIds:array<struct<itemId:int,name:string>>>"
     when:
@@ -58,7 +55,7 @@ class OrcSchemaGeneratorSpec extends Specification {
     assertEquals(expectedSchema, actualSchema)
   }
 
-  def "testOrcStructWithMapSchema"() {
+  def "Validate schema generation for map"() {
     given:
     String expectedSchema = "struct<orderId:bigint,itemMap:map<string,struct<itemId:int,name:string>>>"
     when:
